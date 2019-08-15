@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model List<Dish>
+    @foreach(var dish in Model)
+    {
+        <h1>Edit @dish.Name</h1>
+        <a href="/">Home</a>
+        <div>
+            <form action="/editdish/@dish.DishId" method="post">
+                <span asp-validation-for="@dish.Name"></span>
+                <h4>Chef's Name</h4>
+                <input name="Chef" type="text" value="@dish.Chef">
+                <h4>Name of Dish</h4>
+                <input name="Name" type="text" value="@dish.Name">
+                <h4># of Calories</h4>
+                <input name="Calories" type="number" value="@dish.Calories">
+                <h4>Tastiness</h4>
+                <select name="Tastiness">
+                    <option value="">@dish.Tastiness</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <h4>Description</h4>
+                <textarea name="Description" cols="30" rows="5">@dish.Description</textarea>
+            <button>Edit Dish</button>
+            </form>
+        </div>
+
+    }
+</body>
+</html>

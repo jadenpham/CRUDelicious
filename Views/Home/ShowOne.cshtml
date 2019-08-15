@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        @model List<Dish>
+            
+            @foreach(var item in Model)
+            {
+
+                <a href="/">Home</a>
+                <h1>@item.Name</h1>
+                <h3>@item.Chef</h3>
+                <hr>
+
+                <h5>@item.Description</h5>
+                <h5>calories: @item.Calories</h5>
+                <h5>Tastiness: @item.Tastiness</h5>
+            <div>
+                <button onclick="window.location.href = '/delete/@item.DishId'">Delete</button>
+                <button onclick="window.location.href = '/edit/@item.DishId'">Edit</button>
+            </div>
+            }
+            
+</body>
+</html>

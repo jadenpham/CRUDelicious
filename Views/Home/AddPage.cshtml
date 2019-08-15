@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model Dish
+    <div>
+        <h1>Add a New Dish!</h1>
+        <a href="/">Home</a>
+    </div>
+    <div>
+        <form asp-action="AddDish" asp-controller="Home" method="post">
+            <div>
+                <h4>Chef's Name</h4>
+                <span asp-validation-for="Chef"></span>
+                <input type="text" name="Chef">
+
+                <h4>Name of Dish:</h4> 
+                <span asp-validation-for="Name"></span>
+                <input type="text" name="Name">
+
+                <h4># of Calories</h4> 
+                <span asp-validation-for="Calories"></span> 
+                <input name="Calories" type="number">
+            </div>
+            <div>
+                <h4>Tastiness</h4>
+                <span asp-validation-for="Tastiness"></span>
+                <select name="Tastiness">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div>
+                <span asp-validation-for="Description"></span>
+                <h4>Description</h4>
+                <textarea name="Description"cols="30" rows="5"></textarea>
+                <button>Add Dish</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
