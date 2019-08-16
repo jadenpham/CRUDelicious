@@ -66,28 +66,28 @@ namespace CRUDelicious.Controllers
         [HttpGet("edit/{id}")]
         public IActionResult Edit(int id)
         {
-            List<Dish> EditDish = dbContext.Dish.Where(dish => dish.DishId == id).ToList();
+            Dish EditDish = dbContext.Dish.FirstOrDefault(dish => dish.DishId == id);
 
             return View(EditDish);
         }
 
-        [HttpPost("editdish/{id}")]
+        // [HttpPost("editdish/{id}")]
         public IActionResult EditDish(Dish editDish, int id)
         {
             // // return RedirectToAction("{id}",editDish);
-            // if(ModelState.IsValid)
-            // {
-                Dish originalDish = dbContext.Dish.FirstOrDefault(dish => dish.DishId == id);
+            Dish originalDish = dbContext.Dish.FirstOrDefault(dish => dish.DishId == id);
+            if(ModelState.IsValid)
+            {
                 originalDish.Description = editDish.Description;
                 originalDish.Calories = editDish.Calories;
                 originalDish.Name = editDish.Name;
                 originalDish.UpdatedAt = DateTime.Now;
                 dbContext.SaveChanges();
                 return RedirectToAction("ShowOne", new{id = id});
-            // }
-            // else{
-            //     return View("Edit", new{id = id});
-            // }
+            }
+            else{
+                return View("Edit", originalDish);
+            }
         }
 
 

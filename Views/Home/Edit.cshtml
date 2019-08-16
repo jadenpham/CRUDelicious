@@ -7,35 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    @model List<Dish>
-    @foreach(var dish in Model)
-    {
-        <h1>Edit @dish.Name</h1>
+    @model Dish
+    
+        <h1>Edit @Model.Name</h1>
         <a href="/">Home</a>
         <div>
-            <form action="/editdish/@dish.DishId" method="post">
-                <span asp-validation-for="@dish.Name"></span>
+            <form asp-action="EditDish" asp-controller="Home" asp-route-id="@Model.DishId" method="post">
+                <span asp-validation-for="Chef"></span>
                 <h4>Chef's Name</h4>
-                <input name="Chef" type="text" value="@dish.Chef">
+                <input name="Chef" type="text" value="@Model.Chef">
+
+                <span asp-validation-for="Name"></span>
                 <h4>Name of Dish</h4>
-                <input name="Name" type="text" value="@dish.Name">
+                <input name="Name" type="text" value="@Model.Name">
+
+                <span asp-validation-for="Calories"></span>
                 <h4># of Calories</h4>
-                <input name="Calories" type="number" value="@dish.Calories">
+                <input name="Calories" type="number" value="@Model.Calories">
                 <h4>Tastiness</h4>
                 <select name="Tastiness">
-                    <option value="">@dish.Tastiness</option>
+                    <option value="">@Model.Tastiness</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+
+                <span asp-validation-for="Description"></span>
                 <h4>Description</h4>
-                <textarea name="Description" cols="30" rows="5">@dish.Description</textarea>
+                <textarea name="Description" cols="30" rows="5">@Model.Description</textarea>
             <button>Edit Dish</button>
             </form>
         </div>
 
-    }
+    
 </body>
 </html>
